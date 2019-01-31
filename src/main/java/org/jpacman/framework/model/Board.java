@@ -16,20 +16,20 @@ public class Board implements IBoardInspector {
 	 * @param w Width of the board
 	 * @param h Height of the board.
 	 */
-	public Board(int w, int h) {
+	public Board(final int w, final int h) {
 		assert w >= 0;
 		assert h >= 0;
 		width = w;
 		height = h;
 		tiles = new Tile[width][height];
-		
+
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
-				tiles[x][y] = new Tile(x, y); 
+				tiles[x][y] = new Tile(x, y);
 			}
 		}
 	}
-	
+
 	@Override
 	public int getHeight() {
 		return height;
@@ -46,12 +46,12 @@ public class Board implements IBoardInspector {
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 */
-	public void put(Sprite s, int x, int y) {
+	public void put(final Sprite s, final int x, final int y) {
 		assert withinBorders(x, y) : "PRE1: (x,y) on board.";
 		assert s != null : "PRE2: Sprite not null";
 		s.occupy(tileAt(x, y));
 	}
-	
+
 	/**
 	 * Verify that the given location falls within the
 	 * borders of the board.
@@ -59,20 +59,20 @@ public class Board implements IBoardInspector {
 	 * @param y y-coordinate
 	 * @return True iff (x,y) falls within the board.
 	 */
-	public boolean withinBorders(int x, int y) {
+	public boolean withinBorders(final int x, final int y) {
 		return
-			x >= 0 && x < width 
+			x >= 0 && x < width
 			&& y >= 0 && y < height;
 	}
 
 	@Override
-	public Sprite spriteAt(int x, int y) {
-		assert withinBorders(x, y) : "PRE: (x,y) on board.";		
+	public Sprite spriteAt(final int x, final int y) {
+		assert withinBorders(x, y) : "PRE: (x,y) on board.";
 		return tileAt(x, y).topSprite();
 	}
-	
+
 	@Override
-	public SpriteType spriteTypeAt(int x, int y) {
+	public SpriteType spriteTypeAt(final int x, final int y) {
 		Sprite s = spriteAt(x, y);
 		SpriteType result;
 		if (s == null) {
@@ -88,10 +88,10 @@ public class Board implements IBoardInspector {
 	 * @param y y-coordinate
 	 * @return The tile at the given (x,y) place
 	 */
-	public Tile tileAt(int x, int y) {
+	public Tile tileAt(final int x, final int y) {
 		return tiles[x][y];
 	}
-	
+
 	/**
 	 * Return a tile at position (x+dx, y+dy) from current
 	 * tile at (x,y).
@@ -100,7 +100,7 @@ public class Board implements IBoardInspector {
 	 * @param dy delta in y direction
 	 * @return Tile at (x+dx, y+dy)
 	 */
-	public Tile tileAtOffset(Tile t, int dx, int dy) {
+	public Tile tileAtOffset(final Tile t, final int dx, final int dy) {
 		assert t != null;
         int newx = tunnelledCoordinate(t.getX(), getWidth(), dx);
         int newy = tunnelledCoordinate(t.getY(), getHeight(), dy);
@@ -109,8 +109,8 @@ public class Board implements IBoardInspector {
         assert result != null;
         return result;
 	}
-	
-	private int tunnelledCoordinate(int current, int max, int delta) {
+
+	private int tunnelledCoordinate(final int current, final int max, final int delta) {
 		assert current >= 0;
 		assert current < max;
 
@@ -122,14 +122,14 @@ public class Board implements IBoardInspector {
 
 		return result;
 	}
-	
+
 	/**
 	 * Obtain the tile in the given direction.
 	 * @param t Starting position
 	 * @param dir Direction
 	 * @return Tile in direction from the given starting position.
 	 */
-	public Tile tileAtDirection(Tile t, Direction dir) {
+	public Tile tileAtDirection(final Tile t, final Direction dir) {
 		return tileAtOffset(t, dir.getDx(), dir.getDy());
 	}
 }
