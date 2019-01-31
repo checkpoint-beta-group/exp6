@@ -13,10 +13,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class FactoryIntegrationTest {
+    
+    static final int three = 3;
 
 	MapParser parser;
 
-	private String[] map = new String[] { "#####", "#...#", "#GPG#", "#   #",
+	private String[] map = new String[] {"#####", "#...#", "#GPG#", "#   #",
 			"#####" };
 
 	@Before
@@ -31,7 +33,7 @@ public class FactoryIntegrationTest {
 		Board b = g.getBoard();
 
 		// did we recognize the right sprites?
-		assertEquals(SpriteType.EMPTY, b.spriteTypeAt(1, 3));
+		assertEquals(SpriteType.EMPTY, b.spriteTypeAt(1, three));
 		assertEquals(SpriteType.PLAYER, b.spriteTypeAt(2, 2));
 		assertEquals(SpriteType.GHOST, b.spriteTypeAt(1, 2));
 		assertEquals(SpriteType.WALL, b.spriteTypeAt(0, 0));

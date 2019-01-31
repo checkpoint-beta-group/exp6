@@ -21,6 +21,8 @@ import org.junit.runners.Parameterized.Parameters;
  */
 @RunWith(Parameterized.class)
 public class BoardTileAtTest {
+    
+    static final int three = 3;
 
 	private int startx, starty;
 	private Direction dir;
@@ -52,15 +54,15 @@ public class BoardTileAtTest {
 		Object[][] values = new Object[][] {
 				// x-axis boundaries, y random inpoints
 				// left boundary
-				{ 2, 2, Direction.UP, 2, 1 },
-				{ 2, 2, Direction.DOWN, 2, 3 },
-				{ 2, 2, Direction.LEFT, 1, 2 },
-				{ 2, 2, Direction.RIGHT, 3, 2 },
+				{2, 2, Direction.UP, 2, 1 },
+				{2, 2, Direction.DOWN, 2, three },
+				{2, 2, Direction.LEFT, 1, 2 },
+				{2, 2, Direction.RIGHT, three, 2 },
 				// worm holes
-				{ 0, 2, Direction.LEFT, WIDTH - 1, 2 },
-				{ WIDTH - 1, 2, Direction.RIGHT, 0, 2 },
-				{ 2, 0, Direction.UP, 2, HEIGHT - 1 },
-				{ 2, HEIGHT - 1, Direction.DOWN, 2, 0 } };
+				{0, 2, Direction.LEFT, WIDTH - 1, 2 },
+				{WIDTH - 1, 2, Direction.RIGHT, 0, 2 },
+				{2, 0, Direction.UP, 2, HEIGHT - 1 },
+				{2, HEIGHT - 1, Direction.DOWN, 2, 0 } };
 		return Arrays.asList(values);
 	}
 
